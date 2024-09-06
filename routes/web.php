@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\LoginCOntroller;
+use App\Http\Controllers\YourController;
 use App\Models\category;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\PostBlogController;
 
 
 
@@ -49,11 +51,42 @@ Route::get('/post-form',[LoginCOntroller::class,'blogPost'])->name('post')->midd
 
 
 
-Route::post('/blog-posts', [BlogPostController::class, 'store'])->name('blog-posts.store');
+// Route::post('/blog-posts', [BlogPostController::class, 'store'])->name('blog-posts.store');
 
-Route::get('/category',[BlogPostController::class, 'ShowCategory']);
+// Route::get('/category',[BlogPostController::class, 'ShowCategory']);
 
 
+
+// Protect the route using the 'auth' middleware
+// Route::middleware(['auth'])->group(function () {
+//     Route::post('/post-blog/store', [PostBlogController::class, 'store'])->name('post_blog.store');
+// });
+
+Route::post('/post-blog/store', [PostBlogController::class, 'store'])->name('post_blog.store')->middleware('auth');
+
+Route::post('/upload-image', [YourController::class, 'uploadImage'])->name('upload.image')->middleware('auth');
+
+
+
+// Route to display posts
+Route::get('/', [PostBlogController::class, 'index'])->name('post_blog.index')->middleware('auth');
+
+// Route to edit posts
+
+// Route to display the edit post form
+Route::get('/post_blog/{id}/edit', [PostBlogController::class, 'edit'])->name('post_blog.edit')->middleware('auth');
+
+// Route to handle the post update request
+Route::put('/post_blog/{id}', [PostBlogController::class, 'update'])->name('post_blog.update')->middleware('auth');
+
+
+// Route to delete posts
+Route::delete('/post-blogs/{id}', [PostBlogController::class, 'destroy'])->name('post_blog.destroy')->middleware('auth');
+
+
+
+// In web.php
+Route::delete('/post-blog-image/{id}', [PostBlogController::class, 'deleteImage'])->name('post_blog_image.delete')->middleware('auth');
 
 
 // Route::get('/create-category',function(){

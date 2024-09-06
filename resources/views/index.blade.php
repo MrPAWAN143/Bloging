@@ -9,6 +9,10 @@
     <!-- Main Container -->
     <div class="flex h-screen">
 
+
+  
+
+
         <!-- Sidebar -->
         <div class="w-64 bg-gray-800 text-white flex flex-col">
             <div class="flex items-center justify-between p-4 border-b border-gray-700">
@@ -26,10 +30,35 @@
                     </div>
                 </div>
             </div>
+
             <nav class="flex-1">
                 <ul class="mt-4">
+
+                                    <!-- Success Message -->
+<li>
+    @if (session('success'))
+<div id="success-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">Success!</strong>
+    <span class="block sm:inline">{{ session('success') }}</span>
+</div>
+@endif
+
+<!-- Error Message -->
+@if ($errors->any())
+<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">Error!</strong>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+      </li>  
                     <li>
                         <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white" data-target="dashboard">Dashboard</a>
+
+  
                     </li>
                     <li>
                         <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white" data-target="register-users">Register Users</a>
@@ -50,8 +79,8 @@
                         </button>
                         <ul id="posts-menu" class="dropdown-menu pl-4 mt-2">
                             <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white" data-target="add-post">Add Post</a></li>
-                            <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white" data-target="edit-post">Edit Post</a></li>
-                            <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white" data-target="show-posts">Show Posts</a></li>
+                            {{-- <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white" data-target="edit-post">Edit Post</a></li> --}}
+                            <li><a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white" data-target="show-posts">Edit Post</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -67,6 +96,7 @@
                 <!-- Default Content (Dashboard) -->
                 <div id="dashboard" class="block">
                     <h2 class="text-[35px] font-bold mb-4">Dashboard</h2>
+
                     <!-- Dashboard content goes here -->
 
                     <div class="text-start mb-6 !block">
@@ -75,7 +105,8 @@
                         </h1>
                         <p class="text-sm text-gray-600 mt-2">Here’s a quick overview of your data.</p>
                     </div>
-                    
+
+                
                     <div class="!flex space-x-4">
                         <!-- Box 1: Total Categories -->
                         <div class="flex flex-col items-center justify-center w-5/12 h-24 bg-blue-500 text-white font-semibold  shadow-md">
@@ -362,98 +393,207 @@
                     <div id="show-category" class="hidden">
                         <h3 class="text-xl font-semibold mb-4">Show Category</h3>
                         <!-- Category content goes here -->
+   
+                        
                     </div>
                 </div>
 
                 <!-- Posts Section -->
                 <div id="posts-section" class="hidden">
+
+
+
+
                     <!-- Add Post Form -->
 <div id="add-post" class="hidden p-6 pt-0 bg-white shadow-md rounded-lg">
     <h3 class="text-3xl font-bold text-blue-800 mb-3 ">Add Posts</h3>
-    <form action="#" method="POST" class="space-y-3">
+
+
+ 
+
+    <form action="{{ route('post_blog.store') }}" method="POST" enctype="multipart/form-data" class="space-y-3">
+        @csrf
         <div class="relative">
-            <label for="meta-title" class="block text-gray-600 font-medium mb-1">Images</label>
-            <input type="file" id="meta-title" name="meta-title" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            <label for="images" class="block text-gray-600 font-medium mb-1">Images</label>
+            <input type="file" id="images" name="images[]" multiple class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
         </div>
-       <div class="relative flex gap-2">
-        <div class="flex-1">
-            <label for="name" class="block text-gray-600 font-medium mb-1">Heading</label>
-            <input type="text" id="name" name="name" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4" required>
-            <svg class="absolute top-2 right-3 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+    
+        <div class="relative flex gap-2">
+            <div class="flex-1">
+                <label for="heading" class="block text-gray-600 font-medium mb-1">Heading</label>
+                <input type="text" id="heading" name="heading" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4" required>
+            </div>
+            <div class="flex-1">
+                <label for="slug" class="block text-gray-600 font-medium mb-1">Slug (URL)</label>
+                <input type="text" id="slug" name="slug" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            </div>
         </div>
-        <div class="flex-1">
-            <label for="slug" class="block text-gray-600 font-medium mb-1">Slug (URL)</label>
-            <input type="text" id="slug" name="slug" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
-        </div>
-       </div>
-       
+    
         <div class="relative">
-            <label for="meta-title" class="block text-gray-600 font-medium mb-1">Meta Title</label>
-            <input type="text" id="meta-title" name="meta-title" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            <label for="meta_title" class="block text-gray-600 font-medium mb-1">Meta Title</label>
+            <input type="text" id="meta_title" name="meta_title" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
         </div>
-      
+    
         <div class="relative">
-            <label for="meta-description" class="block text-gray-600 font-medium mb-1">Meta Description</label>
-            <input type="text" id="meta-description" name="meta-description" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            <label for="meta_description" class="block text-gray-600 font-medium mb-1">Meta Description</label>
+            <input type="text" id="meta_description" name="meta_description" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
         </div>
+    
         <div class="relative">
             <label for="keyword" class="block text-gray-600 font-medium mb-1">Keyword</label>
             <input type="text" id="keyword" name="keyword" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
         </div>
+    
         <div class="relative">
             <label for="description" class="block text-gray-600 font-medium mb-1">Description</label>
             <textarea id="description" name="description" rows="4" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4"></textarea>
         </div>
-        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Submit</button>
+    
+        
+    <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Submit</button>
     </form>
+    
 </div>
 
-                    <!-- Edit Post Form -->
-<div id="edit-post" class="hidden p-6 pt-0 bg-white shadow-md rounded-lg">
-    <h3 class="text-3xl font-bold text-blue-800 mb-3 ">Edit Posts</h3>
-    <form action="#" method="POST" class="space-y-3">
-        <div class="relative">
-            <label for="meta-title" class="block text-gray-600 font-medium mb-1">Images</label>
-            <input type="file" id="meta-title" name="meta-title" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+
+<!-- Edit Post Form -->
+{{-- <div id="edit-post" class="p-6 pt-0 bg-white shadow-md rounded-lg w-[900px] m-auto">
+    <div class="flex items-center justify-between mb-4">
+        <h3 class="text-3xl font-bold text-blue-800 ml-4">Edit Post</h3>
+        <a href="{{ route('post_blog.index') }}" class="flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Back to Show Posts
+        </a>
+    </div>
+
+    <!-- Form for editing a post -->
+    <form action="{{ route('post_blog.update', $postBlogs->id) }}" method="POST" enctype="multipart/form-data" class="space-y-3">
+        @csrf
+        
+        <!-- Heading Input -->
+        <div class="relative flex gap-2">
+            <div class="flex-1">
+                <label for="name" class="block text-gray-600 font-medium mb-1">Heading</label>
+                <input type="text" id="name" name="name" value="{{ old('name', $post->heading) }}" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4" required>
+            </div>
+            
+            <!-- Slug Input -->
+            <div class="flex-1">
+                <label for="slug" class="block text-gray-600 font-medium mb-1">Slug (URL)</label>
+                <input type="text" id="slug" name="slug" value="{{ old('slug', $post->slug) }}" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            </div>
         </div>
-       <div class="relative flex gap-2">
-        <div class="flex-1">
-            <label for="name" class="block text-gray-600 font-medium mb-1">Heading</label>
-            <input type="text" id="name" name="name" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4" required>
-            <svg class="absolute top-2 right-3 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-        </div>
-        <div class="flex-1">
-            <label for="slug" class="block text-gray-600 font-medium mb-1">Slug (URL)</label>
-            <input type="text" id="slug" name="slug" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
-        </div>
-       </div>
-       
+
+        <!-- Meta Title Input -->
         <div class="relative">
             <label for="meta-title" class="block text-gray-600 font-medium mb-1">Meta Title</label>
-            <input type="text" id="meta-title" name="meta-title" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            <input type="text" id="meta-title" name="meta_title" value="{{ old('meta_title', $post->meta_title) }}" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
         </div>
-      
+
+        <!-- Meta Description Input -->
         <div class="relative">
             <label for="meta-description" class="block text-gray-600 font-medium mb-1">Meta Description</label>
-            <input type="text" id="meta-description" name="meta-description" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            <input type="text" id="meta-description" name="meta_description" value="{{ old('meta_description', $post->meta_description) }}" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
         </div>
+
+        <!-- Keyword Input -->
         <div class="relative">
             <label for="keyword" class="block text-gray-600 font-medium mb-1">Keyword</label>
-            <input type="text" id="keyword" name="keyword" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            <input type="text" id="keyword" name="keyword" value="{{ old('keyword', $post->keyword) }}" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
         </div>
+
+        <!-- Description Input -->
         <div class="relative">
             <label for="description" class="block text-gray-600 font-medium mb-1">Description</label>
-            <textarea id="description" name="description" rows="4" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4"></textarea>
+            <textarea id="description" name="description" rows="4" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">{{ old('description', $post->description) }}</textarea>
         </div>
-        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Submit</button>
+
+        <!-- Image Upload -->
+        <div class="relative">
+            <label for="images" class="block text-gray-600 font-medium mb-1">Images</label>
+            <input type="file" id="images" name="images" class="block w-full border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2 px-4">
+            @if($post->images->count())
+                <div class="mt-2">
+                    @foreach($post->images as $image)
+                        <img src="{{ asset('storage/' . $image->image_path) }}" alt="Post Image" class="w-16 h-16 object-cover">
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Update Post</button>
     </form>
-</div>
+</div> --}}
 
                     <!-- Show Posts Content -->
-                    <div id="show-posts" class="hidden">
+                    <div id="show-posts">
                         <h3 class="text-xl font-semibold mb-4">Show Posts</h3>
-                        <!-- Posts content goes here -->
+                    
+                        <!-- Table for showing posts -->
+                        <table class="min-w-full bg-white">
+                            <thead>
+                                <tr>
+                                    <th class="py-2">Count</th>
+                                    <th class="py-2">Heading</th>
+                                    <th class="py-2">Slug (URL)</th>
+                                    {{-- <th class="py-2">Meta Title</th> --}}
+                                    {{-- <th class="py-2">Meta Description</th> --}}
+                                    <th class="py-2">Keyword</th>
+                                    <th class="py-2">Description</th>
+                                    {{-- <th class="py-2">Created At</th> --}}
+                                    {{-- <th class="py-2">Updated At</th> --}}
+                                    {{-- <th class="py-2">Images</th> --}}
+                                    <th class="py-2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <?php $count = 1?>
+                               
+                                @foreach($postBlogs as $post)
+                                
+                                    <tr class="border-b">
+                                        <td class="py-2 px-4">{{ $count}}</td>
+                                        <td class="py-2 px-4">{{ $post->heading }}</td>
+                                        <td class="py-2 px-4">{{ Str::limit($post->slug,20) }}</td>
+                                        {{-- <td class="py-2 px-4">{{ Str::limit($post->meta_title,10) }}</td> --}}
+                                        {{-- <td class="py-2 px-4">{{ Str::limit($post->meta_description , 10) }}</td> --}}
+                                        <td class="py-2 px-4">{{ Str::limit($post->keyword,20) }}</td>
+                                        <td class="py-2 px-4">{{ Str::limit($post->description, 30) }}</td>
+                                        {{-- <td class="py-2 px-4">{{ $post->created_at }}</td> --}}
+                                        {{-- <td class="py-2 px-4">{{ $post->updated_at }}</td> --}}
+                                        {{-- <td class="py-2 px-4">
+                                            @if($post->images->count())
+                                                @foreach($post->images as $image)
+                                                    <img src="{{ asset('storage/app/public/' . $image->image_path) }}" alt="Post Image" class="w-16 h-16 object-cover">
+                                                   
+                                                @endforeach
+
+                                             
+                                            @else
+                                                <span>No Images</span>
+                                            @endif
+                                        </td> --}}
+                                        <td class="py-2 px-4">
+                                            <!-- Edit Button -->
+                                            <a href="{{ route('post_blog.edit', $post->id) }}" class="text-blue-600 hover:text-blue-800" data-target="edit-post">Edit</a>
+                                            {{-- <a href="{{ route('post_blog.edit', $post->id) }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white " data-target="edit-post">Edit</a> --}}
+                                            <!-- Delete Button -->
+                                            <form action="{{ route('post_blog.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <?php $count++ ?>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -536,4 +676,7 @@
 </footer>
 
 @endsection --}}
+
+
+<!-- Include CKEditor script -->
 

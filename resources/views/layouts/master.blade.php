@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @yield('metaimagedelete')
     <title>@yield('title')</title>
         {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>s --}}
 
@@ -39,6 +40,11 @@
         th, td {
             border: 1px solid #e5e7eb; /* Light gray border */
         }
+
+
+        #success-message {
+        transition: opacity 0.6s ease-out; /* Adjust duration as needed */
+    }
     </style>
     
 </head>
@@ -75,6 +81,128 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Get all menu links
+    const menuLinks = document.querySelectorAll('a[data-target]');
+    
+    // Get all sections
+    const addPostSection = document.getElementById('add-post');
+    const editPostSection = document.getElementById('edit-post');
+    const showPostsSection = document.getElementById('show-posts');
+    
+    // Function to hide all sections
+    function hideAllSections() {
+        if (addPostSection) addPostSection.classList.add('hidden');
+        if (editPostSection) editPostSection.classList.add('hidden');
+        if (showPostsSection) showPostsSection.classList.add('hidden');
+    }
+    
+    // Add click event listener to all menu links
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            // event.preventDefault(); // Prevent default link behavior
+            
+            // Get the target section id
+            const targetId = this.getAttribute('data-target');
+            
+            // Hide all sections
+            hideAllSections();
+            
+            // Show the targeted section
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) targetSection.classList.remove('hidden');
+        });
+    });
+    
+    // Add click event listener to the "Edit Post" links in the table
+    document.querySelectorAll('#show-posts a[data-target="edit-post"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            // event.preventDefault(); // Prevent default link behavior
+
+            // Hide the "Show Posts" section
+            if (showPostsSection) showPostsSection.classList.add('hidden');
+
+            // Show the "Edit Post" section
+            if (editPostSection) editPostSection.classList.remove('hidden');
+        });
+    });
+
+    // Add click event listener to the "Back to Show Posts" link
+    const backToShowPostsLink = document.getElementById('back-to-show-posts');
+    if (backToShowPostsLink) {
+        backToShowPostsLink.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+
+            // Hide the "Edit Post" section
+            if (editPostSection) editPostSection.classList.add('hidden');
+
+            // Show the "Show Posts" section
+            if (showPostsSection) showPostsSection.classList.remove('hidden');
+        });
+    }
+});
+
+
+</script>
+
+
+
+<!-- Add this script at the bottom of your Blade file -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('button[data-image-id]').forEach(button => {
+            button.addEventListener('click', function () {
+                const imageId = this.getAttribute('data-image-id');
+
+                if (confirm('Are you sure you want to delete this image?')) {
+                    fetch(`/post-blog-image/${imageId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Remove the image from the DOM
+                            button.closest('div.group').remove();
+                        } else {
+                            alert('Failed to delete image');
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Check if the success message exists
+            const successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                // Set timeout to hide the success message after 5 seconds (5000 milliseconds)
+                setTimeout(() => {
+                    successMessage.style.opacity = '0'; // Fade out effect
+                    setTimeout(() => {
+                        successMessage.style.display = 'none'; // Hide completely after fade out
+                    }, 600); // Allow time for the fade-out effect
+                }, 5000); // Time in milliseconds (5 seconds)
+            }
+        });
+    </script>
+
+
+
+
+    
 
 
     <script>
