@@ -98,7 +98,7 @@ public function edit($id)
     $post = PostBlog::findOrFail($id);
     
     // Return the edit view with the post data
-    return view('edit', compact('post'));
+    return view('editpost', compact('post'));
 }
 
 public function update(Request $request, $id)

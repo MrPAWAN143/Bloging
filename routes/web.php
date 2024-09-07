@@ -26,6 +26,10 @@ Route::get('/login',function(){
     return view('login');
 })->name('login');
 
+Route::get('/final-page',function(){
+return view('finalpage');
+});
+
 
 Route::post('/login',[LoginCOntroller::class,'loginaction']);
 
@@ -88,6 +92,11 @@ Route::delete('/post-blogs/{id}', [PostBlogController::class, 'destroy'])->name(
 // In web.php
 Route::delete('/post-blog-image/{id}', [PostBlogController::class, 'deleteImage'])->name('post_blog_image.delete')->middleware('auth');
 
+
+
+
+
+Route::post('/submit-comment', [CommentController::class, 'store'])->name('submit.comment');
 
 // Route::get('/create-category',function(){
 // $category = new category();

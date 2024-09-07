@@ -37,10 +37,7 @@
                     <a href="#" class="block py-2 px-2 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Packing Service</a>
                 </li>
 
-                <li>
-                    <a href="{{url('/logout')}}" class=" py-2 px-2 text-gray-900 border-b border-gray-100 md:bg-red-600 md:px-5 md:py-2 md:border-0  md:p-0 dark:text-white  rounded-md md:hover:bg-red-400  dark:border-gray-700
-">Logout</a>
-                </li>
+            
             </ul>
         </div>
     </div>
@@ -49,9 +46,226 @@
 
 @section('IndexPage')
 
-<h1>
-    Hellow Final Page
-</h1>
+
+<div class="max-w-4xl mx-auto w-[800px] p-4 bg-white shadow-lg rounded-lg mt-0">
+  
+    <!-- Slick Slider for Images -->
+    <div id="custom-slider" class="mt-0 h-[400px]">
+        <div class="h-[400px]">
+            <img src="https://via.placeholder.com/400x300" alt="Blog Image 1" class="w-full h-auto rounded-lg object-cover">
+        </div>
+        <div class="h-[400px]">
+            <img src="https://via.placeholder.com/400x300" alt="Blog Image 2" class="w-full h-auto rounded-lg object-cover">
+        </div>
+        <div class="h-[400px]">
+            <img src="https://via.placeholder.com/400x300" alt="Blog Image 3" class="w-full h-auto rounded-lg object-cover">
+        </div>
+    </div>
+
+      <!-- Heading, Author Name, and Post Time -->
+      <h1 class="text-3xl font-bold mb-4 text-center md:text-left">Amazing Blog Title</h1>
+      <p class="text-gray-600 text-center md:text-left">By John Doe | Posted on Sep 07, 2024</p>
+  
+ <!-- Subheading -->
+ <h2 class="text-2xl font-semibold text-gray-700 mb-4 mt-4">Subheading</h2>
+
+
+
+    <!-- Description with "Show More" functionality -->
+    <div class="mt-6">
+        <p id="short-description" class="text-gray-700">
+            This is the beginning of a very interesting blog post. The first 200 words are shown here by default. To read the rest of the post, click on the 'Show More' button below...
+        </p>
+        <p id="full-description" class="text-gray-700 hidden">
+            This is the complete description of the blog post. It includes more details, examples, and conclusions that the reader will find valuable once they click to reveal the full content.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ab corporis culpa sequi adipisci consequuntur unde repudiandae. Impedit, repellendus modi? Magnam dolore beatae fugiat deleniti officia qui sapiente tempore nisi!
+            Consequuntur mollitia recusandae odit? Quisquam excepturi odit placeat fugit, quaerat optio veritatis quidem quibusdam rem qui repudiandae culpa molestias eaque incidunt quam consectetur dolorem minus numquam, nulla corrupti quas magni?
+            Odio cum quaerat tempore! Quis, accusantium consectetur provident omnis mollitia est ab veniam illum, ut velit laborum magni non incidunt, fugiat quo hic sequi. Suscipit dolorem incidunt ut voluptates magni.
+            Sequi harum culpa aliquid, et animi recusandae reiciendis veniam obcaecati adipisci temporibus, id, modi eius! Iste, porro adipisci recusandae nobis facere provident, illum dolor facilis autem, doloribus unde temporibus commodi.
+            Quisquam vero dolor veritatis sit pariatur libero dolore? Accusantium voluptates eaque ab vitae impedit itaque dolore quam. Voluptate vel nihil omnis veniam natus, alias quod inventore vero officiis odio expedita!
+            Facilis earum aliquid, minima, dolores culpa consequatur illum tempora voluptatum doloribus quisquam minus consectetur suscipit recusandae, nam deserunt corporis obcaecati cumque aspernatur iure laborum magni commodi repellendus sunt alias! Aspernatur.
+            Fugiat velit nam modi quidem voluptas quaerat saepe. Libero tempora magni cumque ut assumenda aperiam incidunt laborum eaque quod mollitia, totam, sequi explicabo quos. Fugit facere architecto quia fuga aperiam.
+            Explicabo facilis ipsum voluptatem earum odit temporibus optio soluta culpa eum natus ut voluptatum nemo quia impedit porro esse iure, provident nisi officia facere atque expedita unde. Possimus, incidunt perferendis.
+            Libero atque quibusdam deleniti tempore saepe reprehenderit aliquid aspernatur, odit a quasi ea maiores quas labore id optio, voluptate error alias. Similique enim aliquam sit, accusamus iusto repellendus tempore et.
+            Iure commodi qui illo doloremque illum saepe veniam? Consequatur repellat ipsa at cum commodi! Error nesciunt, ipsum nisi soluta eligendi deserunt nam mollitia asperiores consectetur doloremque temporibus eaque, modi sequi.
+            Doloribus explicabo doloremque vitae magnam, architecto dolor magni consequuntur voluptate pariatur quidem accusamus excepturi! Nisi dolore voluptas libero facilis incidunt autem omnis ut tenetur! Aliquam iure fuga placeat accusantium saepe.
+            Eum architecto maiores doloribus quae neque dolore velit enim aliquid quas saepe nostrum sequi nihil temporibus accusantium distinctio est, commodi odio dolorem voluptatum! Nemo ab placeat sit ad. Inventore, cum.
+            Ipsam corrupti fugit adipisci blanditiis. Optio recusandae ut enim ipsum excepturi, deleniti magni maiores cumque? Nemo, deserunt totam, magnam quia dolores expedita corporis beatae esse, quasi sunt labore quidem est?
+            Officiis error non temporibus repellendus odio delectus dolorum fugit asperiores at, iusto neque doloribus ex vitae sit maxime obcaecati. Mollitia aperiam voluptates aspernatur expedita debitis laudantium, tempore reprehenderit officiis eaque!
+            Rem enim velit harum. Expedita ducimus repudiandae ullam numquam corporis est explicabo tempora quas quidem? Molestiae minima sequi eveniet nostrum, laborum totam accusamus, provident a dolores fugit ut quod consequuntur.
+            Ratione unde ipsam exercitationem debitis harum laboriosam est, consectetur iusto dignissimos porro sint accusamus quis optio distinctio esse quasi ex ducimus veniam ipsa ut! Numquam quasi sint voluptates asperiores vel?
+            Veniam vero magnam optio deserunt cumque. Repellat, veniam. Totam eum commodi voluptas earum veritatis illo, nam animi quas nostrum eveniet, molestias assumenda quaerat pariatur debitis quos unde dolore blanditiis ex!
+            Vero, non aliquid. Rem suscipit aperiam quam libero reprehenderit doloremque unde nemo pariatur. Deleniti accusantium sint tenetur vitae? Officiis ex vitae temporibus id exercitationem perferendis doloribus sequi architecto optio odio?
+            Eaque totam tempore aliquam dolorum dolorem vitae nobis, consectetur quisquam reprehenderit voluptatibus ut ipsam quidem inventore rerum sed dolore, excepturi impedit commodi mollitia necessitatibus voluptate iure, magnam esse? Sit, nisi.
+            Optio quaerat itaque odit labore alias reiciendis impedit tempora omnis, laudantium harum exercitationem vitae non eaque obcaecati molestias perspiciatis amet sapiente, autem placeat sunt magnam sequi nesciunt, delectus quas? Quasi.
+        </p>
+        <button id="show-more-btn" class="text-blue-500 hover:underline mt-2">Show More</button>
+    </div>
+
+
+    <!-- Social Media Share Buttons -->
+<div class="flex gap-4 mb-8 mt-6">
+    <!-- Facebook Icon -->
+    <a href="#" class="text-blue-500 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.406.593 24 1.325 24h11.495v-9.294H9.847v-3.62h2.973V8.413c0-2.939 1.796-4.543 4.418-4.543 1.256 0 2.335.093 2.649.135v3.07h-1.817c-1.425 0-1.7.678-1.7 1.672v2.191h3.4l-.443 3.62h-2.957V24h5.789C23.407 24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/>
+        </svg>
+        Facebook
+    </a>
+
+    <!-- Instagram Icon -->
+    <a href="#" class="text-pink-500 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.206.056 1.86.247 2.29.415.59.228 1.01.5 1.452.942.442.442.715.862.942 1.451.168.431.36 1.085.416 2.29.058 1.268.07 1.648.07 4.851s-.012 3.584-.07 4.85c-.056 1.206-.247 1.86-.415 2.29-.228.59-.5 1.01-.942 1.452-.442.442-.862.715-1.451.942-.431.168-1.085.36-2.29.416-1.268.058-1.648.07-4.851.07s-3.584-.012-4.85-.07c-1.206-.056-1.86-.247-2.29-.415a3.516 3.516 0 0 1-1.451-.942 3.516 3.516 0 0 1-.942-1.451c-.168-.431-.36-1.085-.416-2.29-.058-1.268-.07-1.648-.07-4.85s.012-3.584.07-4.851c.056-1.206.247-1.86.415-2.29.228-.59.5-1.01.942-1.452.442-.442.862-.715 1.451-.942.431-.168 1.085-.36 2.29-.416 1.268-.058 1.648-.07 4.85-.07M12 0C8.741 0 8.332.012 7.052.07c-1.278.059-2.155.256-2.906.545a5.92 5.92 0 0 0-2.148 1.41A5.92 5.92 0 0 0 .544 4.163c-.289.751-.486 1.628-.544 2.906C0 8.332 0 8.741 0 12s.012 3.668.07 4.948c.059 1.278.256 2.155.544 2.906.293.751.671 1.39 1.41 2.148a5.92 5.92 0 0 0 2.148 1.41c.751.289 1.628.486 2.906.544C8.332 24 8.741 24 12 24s3.668-.012 4.948-.07c1.278-.059 2.155-.256 2.906-.544a5.92 5.92 0 0 0 2.148-1.41 5.92 5.92 0 0 0 1.41-2.148c.289-.751.486-1.628.544-2.906.058-1.28.07-1.689.07-4.948s-.012-3.668-.07-4.948c-.059-1.278-.256-2.155-.544-2.906a5.92 5.92 0 0 0-1.41-2.148A5.92 5.92 0 0 0 20.907.615c-.751-.289-1.628-.486-2.906-.544C15.668 0 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324A6.162 6.162 0 0 0 12 5.838zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+        </svg>
+        Instagram
+    </a>
+
+    <!-- Twitter Icon -->
+    <a href="#" class="text-blue-400 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.379 4.482A13.95 13.95 0 0 1 1.671 3.149a4.916 4.916 0 0 0 1.523 6.557 4.902 4.902 0 0 1-2.228-.616v.061a4.918 4.918 0 0 0 3.946 4.827 4.902 4.902 0 0 1-2.224.084 4.922 4.922 0 0 0 4.593 3.417A9.867 9.867 0 0 1 .964 19.539a13.941 13.941 0 0 0 7.548 2.212c9.057 0 14.01-7.512 14.01-14.01 0-.213-.005-.425-.015-.636A10.025 10.025 0 0 0 24 4.557z"/>
+        </svg>
+        Twitter
+    </a>
+</div>
+
+
+    <!-- Comment Form -->
+    <div class="mt-8">
+        <h2 class="text-2xl font-bold mb-4 text-center md:text-left">Leave a Comment</h2>
+        <form class="space-y-4">
+            <div class="flex flex-col">
+                <label for="name" class="mb-1 text-sm font-semibold">Name</label>
+                <input type="text" id="name" class="px-3 py-2 border rounded-md" placeholder="Your Name" required>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="email" class="mb-1 text-sm font-semibold">Email</label>
+                <input type="email" id="email" class="px-3 py-2 border rounded-md" placeholder="Your Email" required>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="comment" class="mb-1 text-sm font-semibold">Comment</label>
+                <textarea id="comment" rows="4" class="px-3 py-2 border rounded-md" placeholder="Your Comment" required></textarea>
+            </div>
+
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Submit</button>
+        </form>
+    </div>
+
+
+    
+</div>
+
+<div class="max-w-sm mx-auto m-6 bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row p-4">
+    {{-- <!-- Profile Picture -->
+    <div class="flex-shrink-0 mx-auto md:mx-0">
+        <img class="w-24 h-24 rounded-full object-cover" src="https://via.placeholder.com/150" alt="Author profile picture">
+    </div>
+
+    <!-- Author Info -->
+    <div class="mt-4 md:mt-0 md:ml-4 text-center md:text-left">
+        <h2 class="text-xl font-bold text-gray-800">John Doe</h2>
+        <p class="text-gray-600 mt-2">Full Stack Developer and passionate writer with a love for creating meaningful digital experiences. Sharing knowledge and insights through blogging for over 5 years.</p>
+
+        <!-- Social Media Links -->
+        <div class="flex justify-center md:justify-start gap-4 mt-4">
+            <a href="#" class="text-blue-500 hover:text-blue-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.406.593 24 1.325 24h11.495v-9.294H9.847v-3.62h2.973V8.413c0-2.939 1.796-4.543 4.418-4.543 1.256 0 2.335.093 2.649.135v3.07h-1.817c-1.425 0-1.7.678-1.7 1.672v2.191h3.4l-.443 3.62h-2.957V24h5.789C23.407 24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/>
+                </svg>
+            </a>
+            <a href="#" class="text-pink-500 hover:text-pink-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.206.056 1.86.247 2.29.415.59.228 1.01.5 1.452.942.442.442.715.862.942 1.451.168.431.36 1.085.416 2.29.058 1.268.07 1.648.07 4.851s-.012 3.584-.07 4.85c-.056 1.206-.247 1.86-.415 2.29-.228.59-.5 1.01-.942 1.452-.442.442-.862.715-1.451.942-.431.168-1.085.36-2.29.416-1.268.058-1.648.07-4.851.07s-3.584-.012-4.85-.07c-1.206-.056-1.86-.247-2.29-.415a3.516 3.516 0 0 1-1.451-.942 3.516 3.516 0 0 1-.942-1.451c-.168-.431-.36-1.085-.416-2.29-.058-1.268-.07-1.648-.07-4.85s.012-3.584.07-4.851c.056-1.206.247-1.86.415-2.29.228-.59.5-1.01.942-1.452.442-.442.862-.715 1.451-.942.431-.168 1.085-.36 2.29-.416 1.268-.058 1.648-.07 4.85-.07M12 0C8.741 0 8.332.012 7.052.07c-1.278.059-2.155.256-2.906.545a5.92 5.92 0 0 0-2.148 1.41A5.92 5.92 0 0 0 .544 4.163c-.289.751-.486 1.628-.544 2.906C0 8.332 0 8.741 0 12s.012 3.668.07 4.948c.059 1.278.256 2.155.544 2.906.293.751.671 1.39 1.41 2.148a5.92 5.92 0 0 0 2.148 1.41c.751.289 1.628.486 2.906.544C8.332 24 8.741 24 12 24s3.668-.012 4.948-.07c1.278-.059 2.155-.256 2.906-.544a5.92 5.92 0 0 0 2.148-1.41 5.92 5.92 0 0 0 1.41-2.148c.289-.751.486-1.628.544-2.906.058-1.28.07-1.689.07-4.948s-.012-3.668-.07-4.948c-.059-1.278-.256-2.155-.544-2.906a5.92 5.92 0 0 0-1.41-2.148A5.92 5.92 0 0 0 20.907.615c-.751-.289-1.628-.486-2.906-.544C15.668 0 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324A6.162 6.162 0 0 0 12 5.838zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+                </svg>
+            </a>
+            <a href="#" class="text-blue-400 hover:text-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.379 4.482A13.95 13.95 0 0 1 1.671 3.149a4.905 4.905 0 0 0-.665 2.473c0 1.708.87 3.215 2.188 4.098a4.902 4.902 0 0 1-2.224-.614v.061c0 2.385 1.698 4.374 3.95 4.829a4.936 4.936 0 0 1-2.217.084 4.927 4.927 0 0 0 4.6 3.418 9.867 9.867 0 0 1-6.102 2.105c-.395 0-.786-.023-1.17-.068a13.951 13.951 0 0 0 7.548 2.213c9.055 0 14.01-7.496 14.01-13.986 0-.213-.005-.425-.014-.637A9.936 9.936 0 0 0 24 4.557z"/>
+                </svg>
+            </a>
+        </div>
+    </div> --}}
+
+
+    <!-- Related Blogs -->
+    <div>
+      <h3 class="text-2xl font-semibold mb-4">Author</h3>
+      <div class="space-y-4">
+          <!-- Example Related Blog Item -->
+          <div class="flex items-center space-x-4">
+              <img src="https://via.placeholder.com/100x75" alt="Related Blog Image" class="w-24 h-18 rounded-lg object-cover">
+              <div>
+                  <h4 class="text-xl font-bold">Author Name</h4>
+                  <p class="text-gray-600">Short description of the related blog...</p>
+                  <a href="#" class="text-blue-500 hover:underline">Read More</a>
+              </div>
+          </div>
+          <!-- Add more related blogs here -->
+      </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    // Show More / Show Less Toggle
+    document.getElementById('show-more-btn').addEventListener('click', function() {
+        var shortDescription = document.getElementById('short-description');
+        var fullDescription = document.getElementById('full-description');
+        
+        if (shortDescription.classList.contains('hidden')) {
+            shortDescription.classList.remove('hidden');
+            fullDescription.classList.add('hidden');
+            this.textContent = 'Show More';
+        } else {
+            shortDescription.classList.add('hidden');
+            fullDescription.classList.remove('hidden');
+            this.textContent = 'Show Less';
+        }
+    });
+
+    // Initialize Slick Slider with custom ID
+    $(document).ready(function(){
+        $('#custom-slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots: true,
+            arrows: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: true,
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: true,
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: true,
+                    }
+                }
+            ]
+        });
+    });
+</script>
 @endsection
 
 
