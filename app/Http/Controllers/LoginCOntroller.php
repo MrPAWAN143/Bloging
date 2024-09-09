@@ -10,23 +10,35 @@ class LoginCOntroller extends Controller
 {
     public function dashboard(){
         
-        return view('index');
+        return view('admin/dashboard');
     }
 
-    public function test(){
-        return view('finalpage');
+    public function registeruser(){
+        
+        // return "helwo";
+        return view('admin/registeruser');
+    }
+    public function addcategories(){
+        
+        // return "helwo";
+        return view('admin/addcategories');
+    }
+    public function editcategories(){
+        
+        // return "helwo";
+        return view('admin/editcategories');
     }
 
-    public function blogPost(){
-        return view('blogpostform');
-    }
+    public function addposts(){
 
+        return view('admin/addposts');
+    }
 
     public function loginaction(Request $request){
         $credentials = $request->only('email','password');
         
         if(Auth::attempt($credentials)){
-            return redirect()->intended('/');
+            return redirect()->intended('/admin');
         }
 
     }

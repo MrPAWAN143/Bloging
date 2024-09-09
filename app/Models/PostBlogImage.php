@@ -12,6 +12,6 @@ class PostBlogImage extends Model
 
     public function postBlog()
     {
-        return $this->belongsTo(PostBlog::class);
+        return $this->belongsTo(PostBlog::class, 'post_blog_id');
     }
 }
