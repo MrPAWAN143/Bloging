@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\FeaturedBlogController;
 use App\Http\Controllers\LoginCOntroller;
 use App\Http\Controllers\ShowBlogController;
 use App\Models\category;
 use App\Models\User;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\PostBlogController;
@@ -41,20 +43,9 @@ Route::post('/admin/categories', [CategoryController::class, 'store'])->name('ca
 Route::get('/admin/addposts', [PostBlogController::class, 'create'])->name('addposts.create')->middleware('auth');
 Route::post('/admin/addposts', [PostBlogController::class, 'store'])->name('addposts.store')->middleware('auth');
 
-Route::get('/admin/editposts', [PostBlogController::class, 'index'])->name('editposts.index');
+Route::get('/admin/editposts', [PostBlogController::class, 'index'])->name('editposts.index')->middleware('auth');
  Route::put('/admin/edited/{id}', [PostBlogController::class, 'edit'])->name('edited.edit')->middleware('auth');
-//  Route::put('/admin/edited/{id}', [PostBlogController::class, 'update'])->name('edited.edit');
  Route::put('/admin/post-blogs/{post_blog}', [PostBlogController::class, 'update'])->name('post_blog.update')->middleware('auth');
-//  Route::post('/admin/post-blogs/{post_blog}', [PostBlogController::class, 'update'])->name('post_blog.update')->middleware('auth');
-
-
-
-
-
-// Route::get('/admin/addposts', [PostBlogController::class, 'create'])->name('post_blog.create')->middleware('auth');
-
-// Route::post('/admin/addposts', [PostBlogController::class, 'store'])->name('addposts.store')->middleware('auth');
-
 
 
 
@@ -64,22 +55,6 @@ Route::delete('/admin/post_blog/{id}', [PostBlogController::class, 'destroy'])->
 
 Route::delete('/post_blog/{image}/delete_image', [PostBlogController::class, 'deleteImage'])->name('post_blog.delete_image')->middleware('auth');
 
-
-
-// Route::delete('/admin/post-blogs/{image}/delete_image', [PostBlogController::class, 'deleteImage'])->name('post_blog.delete_image');
-
-
-
-
-// Define the route for deleting a post blog
-// Route::delete('/admin/post_blog/{post_blog}', [PostBlogController::class, 'destroy'])->name('post_blog.destroy');
-
-// Route::post('/admin/post-blog', [PostBlogController::class, 'store'])->name('post_blog.store')->middleware('auth');
-
-// Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-
-
-// Route::get('/admin/editposts', [PostBlogController::class, 'index'])->name('categories.index')->middleware('auth');
 
 
 
@@ -101,65 +76,6 @@ Route::get('/logout',[LoginCOntroller::class,'logout'])->name('logout');
 
 
 
-// Route::get('/',function(){
-//     return view('dashboard');
-// });
-
-
-// Route::get('/test',[LoginCOntroller::class,'test'])->name('test')->middleware('auth');
-
-// Route::get('/post-form',[LoginCOntroller::class,'blogPost'])->name('post')->middleware('auth');
-
-
-
-
-
-
-// // Route::post('/blog-posts', [BlogPostController::class, 'store'])->name('blog-posts.store');
-
-// // Route::get('/category',[BlogPostController::class, 'ShowCategory']);
-
-
-
-// // Protect the route using the 'auth' middleware
-// // Route::middleware(['auth'])->group(function () {
-// //     Route::post('/post-blog/store', [PostBlogController::class, 'store'])->name('post_blog.store');
-// // });
-
-
-
-// Route::post('/upload-image', [YourController::class, 'uploadImage'])->name('upload.image')->middleware('auth');
-
-
-
-// // Route to display posts
-// // Route::get('/', [PostBlogController::class, 'index'])->name('post_blog.index')->middleware('auth');
-
-
-// // Route to edit posts
-
-
-
-// // Route to delete posts
-// Route::delete('/post-blogs/{id}', [PostBlogController::class, 'destroy'])->name('post_blog.destroy')->middleware('auth');
-
-
-
-// // In web.php
-// Route::delete('/post-blog-image/{id}', [PostBlogController::class, 'deleteImage'])->name('post_blog_image.delete')->middleware('auth');
-
-
-
-
-
-// // Route::post('/submit-comment', [CommentController::class, 'store'])->name('submit.comment');
-
-
-
-// Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-
-
-
 
 // Route::get('/admin',function(){
 //     return view('admin/dashboard');
@@ -178,8 +94,8 @@ Route::get('/logout',[LoginCOntroller::class,'logout'])->name('logout');
 // Route::get('/create-user',function(){
 //     $user = new User();
 //     $user->password = 'Pawan123@#';
-//     $user->email = 'pkumarrana';
-//     $user->name = 'Pawan';
+//     $user->email = 'admin@gmail.com';
+//     $user->name = 'Mulk Raj Anand';
 //     $user->save();
 
 // });
@@ -193,3 +109,42 @@ Route::get('/logout',[LoginCOntroller::class,'logout'])->name('logout');
 Route::get('/', [ShowBlogController::class, 'index'])->name('home');
 
 Route::get('/blog/{slug}', [ShowBlogController::class, 'show'])->name('blog.show');
+
+
+// Route::get('/', [ShowBlogController::class, 'featuredBlogs'])->name('featured.show');
+// web.php
+// Route::get('/featuredBlog/{id}', [FeaturedBlogController::class, 'show'])->name('featuredBlog.show');
+Route::get('/featuredBlog/{slug}', [ShowBlogController::class, 'featuredfinalpage'])->name('firstFeatured.slug');
+Route::get('/featured/{slug}', [ShowBlogController::class, 'featuredfinalpage'])->name('featured.slug');
+
+
+
+
+
+
+// Featured blog??????????????
+
+Route::get('/admin/addfeaturedpost',[FeaturedBlogController::class,'create'])->name('featured_blogs.create')->middleware('auth');
+Route::get('/admin/editfeaturedpost',[FeaturedBlogController::class,'show'])->name('editfeaturedpost')->middleware('auth');
+
+// Route::get('/admin/featured_blogs/create', [FeaturedBlogController::class, 'create'])->name('featured_blogs.create')->middleware('auth');
+
+// Route to display the form to edit a featured blog
+Route::get('/admin/featured_blogs/edit/{id}', [FeaturedBlogController::class, 'edit'])->name('featured_blogs.edit')->middleware('auth');
+// Route to handle the update of a featured blog
+Route::put('/admin/featured_blogs/{id}', [FeaturedBlogController::class, 'update'])->name('featured_blogs.update')->middleware('auth');
+// In routes/web.php
+// Route to delete a featured blog
+Route::delete('/admin/featured_blogs/{id}', [FeaturedBlogController::class, 'destroy'])->name('featured_blogs.destroy')->middleware('auth');
+
+Route::delete('/admin/featured_blogs/image/{id}', [FeaturedBlogController::class, 'deleteImage'])->name('featured_blogs.imagedelete')->middleware('auth');
+
+
+Route::post('/admin/featured_blogs', [FeaturedBlogController::class, 'store'])->name('featured_blogs.store')->middleware('auth');
+
+
+
+
+
+
+

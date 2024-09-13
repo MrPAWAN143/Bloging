@@ -1,5 +1,14 @@
 @extends('layouts.master')
-@section('title', 'Index')
+
+@section('meta')
+<meta name="title" content="{{ $blog->meta_title }}">
+<meta name="discription" content="{{ $blog->meta_description }}">
+@endsection
+
+@section('title')
+<title>{{ $blog->keyword }}</title>
+
+@endsection
 @section('navbar')
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">

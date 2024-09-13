@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
- @yield('metacsrf')
+    @yield('metacsrf')
     {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>s --}}
 
     <!-- jQuery (required for Slick Slider) -->
@@ -71,7 +71,7 @@
                     <button id="user-menu"
                         class="flex items-center space-x-2 text-gray-300 hover:text-white focus:outline-none"
                         onclick="toggleDropdown('dropdown-menu')">
-                        <span id="username">Username</span>
+                        <span id="username">{{ auth()->user()->name }}</span>
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -162,6 +162,45 @@
                                     Post</a></li>
                         </ul>
                     </li>
+
+                 
+
+
+                    <li>
+                        <button
+                            class="w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 sidebar-menu-item focus:outline-none"
+                            onclick="toggleDropdown('Featured-menu')">
+                            Featured
+                        </button>
+                        <ul id="Featured-menu" class="hidden pl-4 mt-2">
+                            <li><a href="{{ url('/admin/addfeaturedpost') }}"
+                                    class="block px-4 py-2 text-gray-300 hover:bg-gray-700 sidebar-menu-item">Add
+                                    Featured
+                                    Post</a></li>
+                            <li><a href="/admin/editfeaturedpost"
+                                    class="block px-4 py-2 text-gray-300 hover:bg-gray-700 sidebar-menu-item">Edit
+                                    Featured
+                                    Post</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <button
+                            class="w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 sidebar-menu-item focus:outline-none"
+                            onclick="toggleDropdown('Explore-menu')">
+                            Explore
+                        </button>
+                        <ul id="Explore-menu" class="hidden pl-4 mt-2">
+                            <li><a href="" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 sidebar-menu-item">Add
+                                Explore
+                                Post</a></li>
+                        <li><a href="" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 sidebar-menu-item">Edit
+                                Explore
+                                Post</a></li>
+                        </ul>
+                    </li>
+
+
                 </ul>
             </nav>
 
@@ -197,6 +236,14 @@
 
                 @yield('editpostsform')
 
+                @yield('addfeaturedblog')
+
+                @yield('editfeaturedpost')
+
+                @yield('editfeaturedform')
+                
+
+
             </div>
         </div>
     </div>
@@ -211,37 +258,37 @@
         }
     </script>
 
-<script>
-    function deleteImage(imageId) {
-        if (confirm('Are you sure you want to delete this image?')) {
-            // Get the image element's container (the div with the image)
-            let imageElement = document.getElementById(`image-${imageId}`);
+    <script>
+        function deleteImage(imageId) {
+            if (confirm('Are you sure you want to delete this image?')) {
+                // Get the image element's container (the div with the image)
+                let imageElement = document.getElementById(`image-${imageId}`);
 
-            // Send a DELETE request to delete the image on the server
-            let url = `/post_blog/${imageId}/delete_image`;  // Adjust the URL to match your route structure
-            fetch(url, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // If the image was successfully deleted on the server, remove the image element from the DOM
-                    imageElement.remove();
-                } else {
-                    alert('Failed to delete image');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // alert('An error occurred while trying to delete the image.');
-            });
+                // Send a DELETE request to delete the image on the server
+                let url = `/post_blog/${imageId}/delete_image`; // Adjust the URL to match your route structure
+                fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // If the image was successfully deleted on the server, remove the image element from the DOM
+                            imageElement.remove();
+                        } else {
+                            alert('Failed to delete image');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // alert('An error occurred while trying to delete the image.');
+                    });
+            }
         }
-    }
-</script>
+    </script>
 
 
 
@@ -334,7 +381,7 @@
         });
     </script>
 
-   
+
 
 
 

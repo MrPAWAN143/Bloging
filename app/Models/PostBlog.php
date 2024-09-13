@@ -25,12 +25,18 @@ class PostBlog extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-      // Define the relationship to post_blog_images
-     
-      public function images()
-      {
-          return $this->hasMany(PostBlogImage::class, 'post_blog_id');
-      }
+    // Define the relationship to post_blog_images
+
+    public function images()
+    {
+        return $this->hasMany(PostBlogImage::class, 'post_blog_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }
 
 

@@ -1,5 +1,8 @@
 @extends('layouts.master')
-@section('title',"login")
+@section('title')
+
+<title>Login</title>
+@endsection
 
 
 @section('logordashboard')

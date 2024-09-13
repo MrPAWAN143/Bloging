@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @yield('metaimagedelete')
-    <title>@yield('title')</title>
+    {{-- @yield('metaimagedelete') --}}
+    @yield('meta')
+   @yield('title')
         {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>s --}}
 
             <!-- jQuery (required for Slick Slider) -->
@@ -15,7 +16,7 @@
          
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    {{-- <link href="{{ asset('resources/css/app.css') }}" rel="stylesheet"> --}}
     @vite('resources/css/app.css')
 
     <style>

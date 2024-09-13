@@ -10,7 +10,7 @@ class Category extends Model
     protected $table = 'categories';
 
     // Specify which fields are mass assignable
-    protected $fillable = ['name', 'slug', 'meta_title', 'meta_description', 'keywords', 'description'];
+    protected $fillable = ['id', 'name', 'slug', 'meta_title', 'meta_description', 'keywords', 'description'];
 
     // If there are any relationships, define them here (optional based on your use case)
     // Example: if Category has a relation with PostBlog

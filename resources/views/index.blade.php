@@ -1,5 +1,11 @@
 @extends('layouts.master')
-@section('title', 'Home')
+@section('title')
+    <title>Home</title>
+@endsection
+
+
+
+
 
 @section('navbar')
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -64,7 +70,6 @@
 
 
 @section('banner')
-
     <div class="banner-slider">
         <div>
             <img src="assest/images/banner1.jpg" alt="Banner 1" class="w-full h-[550px] object-cover">
@@ -76,144 +81,191 @@
             <img src="assest/images/banner3.jpg" alt="Banner 3" class="w-full h-[550px] object-cover">
         </div>
     </div>
-
 @endsection
 
-@section('futureSection')
 
+
+@section('futureSection')
     <section class="bg-gray-100 py-6">
         <div class="container px-4 m-auto">
             <!-- Section Heading with Blue Circle -->
             <div class="flex items-center mb-6">
                 <div class="w-8 h-8 bg-blue-500 rounded-full mr-2"></div>
-                <h2 class="text-4xl font-bold">Featured</h2>
+                <h2 class="text-4xl font-bold">Featured Blogs</h2>
             </div>
 
             <div class="flex flex-col lg:flex-row gap-4">
-                <!-- First Section: Full-width item -->
-                <div class="lg:w-1/2 bg-gray-200 flex flex-col rounded-lg">
-                    <img src="assest/images/featured1.jpg" alt="Blog Image" class="w-full h-80 object-cover rounded-t-lg">
-                    <div class="p-4 flex flex-col flex-1">
-                        <h2 class="text-[40px] font-extrabold mb-2 tracking-widen leading-10">Are You Looking for the Best
-                            Deals On Removal Quotes Online?</h2>
-                        <p class="text-gray-600 mb-2">By <span class="font-semibold">Author Name</span> | Posted on <span
-                                class="font-semibold">Posted Time</span></p>
-                        <p class="text-gray-700 flex-1 text-[18px] ">This is a detailed description of the blog post. It
-                            should be a concise summary, about 50 words long, providing an overview of the content to entice
-                            readers to learn more.</p>
-                        <a href="#" class="text-blue-500 hover:underline mt-2">Learn More</a>
-                    </div>
-                </div>
+                <!-- First Section: Full-width item for the first featured blog -->
+                @if ($featuredBlogs->isNotEmpty())
+                    @php $firstFeatured = $featuredBlogs->first(); @endphp
+                    <div class="lg:w-1/2 bg-gray-200 flex flex-col rounded-lg">
 
-                <!-- Second Section: Four items in horizontal rows -->
+
+                        @if ($firstFeatured->images->isNotEmpty())
+                            <img src="{{ asset('storage/' . $firstFeatured->images->first()->image_path) }}"
+                                alt="Featured Blog Image" class="w-full h-80 object-cover rounded-t-lg">
+                        @else
+                            <!-- Placeholder space for the image -->
+                            <div class="w-full h-80 bg-gray-300 flex items-center justify-center rounded-t-lg mb-4">
+                                <span class="text-gray-500">Image not available</span>
+                            </div>
+                        @endif
+
+                        <div class="p-4 flex flex-col flex-1">
+
+                            <p class="text-sm text-gray-500 mb-2">By <span
+                                    class="font-semibold">{{ $firstFeatured->user->name ?? 'Unknown Author' }}</span> |
+                                <span class="font-semibold">{{ $firstFeatured->created_at->format('M d , Y') }}</span> | <a
+                                    href="" class="text-blue-600 hover:text-blue-800 font-semibold ">
+                                    {{ $firstFeatured->category->name }}
+                                </a>
+                            </p>
+                            <h2 class="text-[35px] font-bold mb-2 tracking-widen leading-10">
+                                {{ $firstFeatured->heading }}</h2>
+                            {{ Str::limit($firstFeatured->description, 450) }}
+
+                            
+                            <a href="{{ route('firstFeatured.slug', $firstFeatured->slug) }}"
+                                class="text-blue-500 hover:underline mt-2">Learn More</a>
+                        </div>
+                    </div>
+                @endif
+
+                <!-- Second Section: Four items in horizontal rows for the remaining featured blogs -->
                 <div class="lg:w-1/2 flex flex-col gap-4">
                     <div class="flex gap-4">
-                        <!-- First Row -->
-                        <div class="bg-gray-200 flex flex-col flex-1 rounded-lg">
-                            <img src="assest/images/featured2.jpg" alt="Blog Image"
-                                class="w-full h-40  object-cover rounded-t-lg">
-                            <div class="p-4 flex flex-col flex-1">
-                                <h2 class="text-[25px] font-semibold mb-1">Blog Heading</h2>
-                                <p class="text-gray-700 flex-1 text-[20px] leading-6">This is a brief description of the
-                                    blog post.</p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2">Learn More</a>
+                        @foreach ($featuredBlogs->slice(1, 2) as $featured)
+                            <!-- Slice to get 2 blogs for the first row -->
+                            <div class="bg-gray-200 flex flex-col flex-1 rounded-lg">
+                                @if ($featured->images->isNotEmpty())
+                                    <img src="{{ asset('storage/' . $featured->images->first()->image_path) }}"
+                                        alt="Featured Blog Image" class="w-full h-40 object-cover rounded-t-lg">
+                                @else
+                                    <!-- Placeholder space for the image -->
+                                    <div class="w-full h-40 bg-gray-300 flex items-center justify-center rounded-t-lg mb-4">
+                                        <span class="text-gray-500">Image not available</span>
+                                    </div>
+                                @endif
+                                <div class="p-4 pt-1 flex flex-col flex-1">
+                                    <p class="text-sm text-gray-500 mb-1 tracking-[0.3]">By <span
+                                            class="font-semibold">{{ $featured->user->name ?? 'Unknown Author' }}</span>
+                                        | <span
+                                            class="font-semibold">{{ $featured->created_at->format('M d') }}</span> |
+                                        <a href="" class="text-blue-600 hover:text-blue-800 font-semibold ">
+                                            {{ Str::limit($featured->category->name, 11) }}
+                                        </a>
+                                    </p>
+                                    <h2 class="text-[25px] font-semibold mb-1 mt-[-5px]">
+                                        {{ Str::limit($featured->heading, 15) }}</h2>
+                                    <p class="text-gray-700 flex-1 text-[20px] leading-6">
+                                        {{ Str::limit($featured->description, 50) }}</p>
+                                    <a href="{{ route('featured.slug', $featured->slug) }}"
+                                        class="text-blue-500 hover:underline mt-2">Learn More</a>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="bg-gray-200 flex flex-col flex-1 rounded-lg">
-                            <img src="assest/images/featured3.jpg" alt="Blog Image"
-                                class="w-full h-40 object-cover rounded-t-lg">
-                            <div class="p-4 flex flex-col flex-1">
-                                <h2 class="text-[25px] font-semibold mb-1">Blog Heading</h2>
-                                <p class="text-gray-700 flex-1 text-[20px] leading-6">This is a brief description of the
-                                    blog post.</p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2">Learn More</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     <div class="flex gap-4">
-                        <!-- Second Row -->
-                        <div class="bg-gray-200 flex flex-col flex-1 rounded-lg">
-                            <img src="assest/images/featured4.jpg" alt="Blog Image"
-                                class="w-full  h-40  object-cover rounded-t-lg">
-                            <div class="p-4 flex flex-col flex-1">
-                                <h2 class="text-[25px] font-semibold mb-1">Blog Heading</h2>
-                                <p class="text-gray-700 flex-1 text-[20px] leading-6">This is a brief description of the
-                                    blog post.</p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2">Learn More</a>
-                            </div>
-                        </div>
+                        @foreach ($featuredBlogs->slice(3, 2) as $featured)
+                            <!-- Slice to get 2 blogs for the second row -->
+                            <div class="bg-gray-200 flex flex-col flex-1 rounded-lg">
 
-                        <div class="bg-gray-200 flex flex-col flex-1 rounded-lg">
-                            <img src="assest/images/featured5.jpg" alt="Blog Image"
-                                class="w-full h-40  object-cover rounded-t-lg">
-                            <div class="p-4 flex flex-col flex-1">
-                                <h2 class="text-[25px] font-semibold mb-1">Blog Heading</h2>
-                                <p class="text-gray-700 flex-1 text-[20px] leading-6">This is a brief description of the
-                                    blog post. </p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2">Learn More</a>
+                                @if ($featured->images->isNotEmpty())
+                                    <img src="{{ asset('storage/' . $featured->images->first()->image_path) }}"
+                                        alt="Featured Blog Image" class="w-full h-40 object-cover rounded-t-lg">
+                                @else
+                                    <!-- Placeholder space for the image -->
+                                    <div class="w-full h-40 bg-gray-300 flex items-center justify-center rounded-t-lg">
+                                        <span class="text-gray-500">Image not available</span>
+                                    </div>
+                                @endif
+
+                                <div class="p-4 pt-1 flex flex-col flex-1">
+                                    <p class="text-sm text-gray-500 mb-1 tracking-[0.3]">By <span
+                                            class="font-semibold">{{ $featured->user->name ?? 'Unknown Author' }}</span>
+                                        | <span
+                                            class="font-semibold">{{ $featured->created_at->format('M d') }}</span> |
+                                        <a href="" class="text-blue-600 hover:text-blue-800 font-semibold ">
+                                            {{ Str::limit($featured->category->name, 11) }}
+                                        </a></p>
+                                    <h2 class="text-[25px] font-semibold mb-1">{{ Str::limit($featured->heading, 15) }}
+                                    </h2>
+                                    <p class="text-gray-700 flex-1 text-[18px] leading-6">
+                                        {{ Str::limit($featured->description, 50) }}</p>
+                                    <a href="{{ route('featured.slug', $featured->slug) }}"
+                                        class="text-blue-500 hover:underline mt-2">Learn More</a>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 @endsection
 
 
+
+
+
+
+
+{{-- @extends('featuredshow') --}}
 
 
 
 
 @section('dashbordcontant')
+    <section class="py-6 bg-gray-100">
+        <div class="container m-auto px-4">
+            <a href="">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-gray-500 rounded-full mr-2"></div>
+                    <h2 class="text-4xl font-bold">Latest Blog</h2>
+                </div>
+            </a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
+               
 
-<section class="py-6 bg-gray-100">
-    <div class="container m-auto px-4">
-        <div class="flex items-center mb-6">
-            <div class="w-8 h-8 bg-gray-500 rounded-full mr-2"></div>
-            <h2 class="text-4xl font-bold">Latest Blog</h2>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
-            @foreach($blogs as $blog)
-            <!-- Blog Item -->
-            <div class="p-4 rounded-lg shadow-lg bg-blue-50">
-                @if($blog->images->isNotEmpty())
-                    <img src="{{ asset('storage/' . $blog->images->first()->image_path) }}" alt="{{ $blog->heading }}"
-                        class="w-full h-52 object-cover rounded-t-lg mb-4">
-                @else
-                    <!-- Placeholder space for the image -->
-                    <div class="w-full h-52 bg-gray-300 flex items-center justify-center rounded-t-lg mb-4">
-                        <span class="text-gray-500">Image not available</span>
+
+                @foreach ($blogs as $blog)
+            
+                    <!-- Blog Item -->
+                    <div class="p-4 rounded-lg shadow-lg bg-blue-50">
+                        @if ($blog->images->isNotEmpty())
+                            <img src="{{ asset('storage/' . $blog->images->first()->image_path) }}"
+                                alt="{{ $blog->heading }}" class="w-full h-52 object-cover rounded-t-lg mb-4">
+                        @else
+                            <!-- Placeholder space for the image -->
+                            <div class="w-full h-52 bg-gray-300 flex items-center justify-center rounded-t-lg mb-4">
+                                <span class="text-gray-500">Image not available</span>
+                            </div>
+                        @endif
+                        <p class="text-sm text-gray-500 mb-2">By {{ $blog->user->name ?? '' }} | <time
+                            datetime="{{ $blog->created_at }}">{{ $blog->created_at->format('M d, Y') }}</time>
+                            | <a
+                            href="" class="text-blue-600 hover:text-blue-800 font-semibold ">
+                            {{ $blog->category->name ?? '' }}
+                        </a>
+                        
+                    </p>
+                    <h3 class="text-xl font-semibold mb-2">{{ $blog->heading }}</h3>
+                        <p class="text-gray-700 text-sm mb-4">
+                            {{ Str::limit($blog->description, 150) }}
+                        </p>
+                        <a href="{{ route('blog.show', $blog->slug) }}" class="text-blue-500 hover:underline">Learn
+                            More</a>
                     </div>
-                @endif
-                <h3 class="text-xl font-semibold mb-2">{{ $blog->heading }}</h3>
-                <p class="text-sm text-gray-500 mb-2">By {{ $blog->author }} | <time datetime="{{ $blog->created_at }}">{{ $blog->created_at->format('F d, Y') }}</time></p>
-                <p class="text-gray-700 text-sm mb-4">
-                    {{ Str::limit($blog->description, 150) }}
-                </p>
-                <a href="{{ route('blog.show', $blog->slug) }}" class="text-blue-500 hover:underline">Learn More</a>
+                @endforeach
             </div>
-            @endforeach
         </div>
-    </div>
-</section>
-
-
-
-
-
-
+    </section>
 @endsection
 
 
 
 @section('explore')
-
-
-
     <section class="bg-gray-100 py-6">
         <div class="container mx-auto px-4">
             <!-- Section Heading -->
@@ -361,8 +413,6 @@
             </div>
         </div>
     </section>
-
-
 @endsection
 
 
@@ -370,7 +420,6 @@
 
 
 @section('customerReview')
-
     <!-- Customer Review Section -->
     <section class="py-6 bg-gray-100">
         <div class="container mx-auto px-4" style="max-width: 95%;">
@@ -499,14 +548,12 @@
             </div>
         </div>
     </section>
-
 @endsection
 
 
 
 
 @section('footer')
-
     <!-- Footer Section -->
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-4" style="max-width: 85%;">
@@ -589,5 +636,4 @@
             </div>
         </div>
     </footer>
-
 @endsection
